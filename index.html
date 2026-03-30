@@ -1,54 +1,29 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-<meta charset="UTF-8">
-<title>Color Tool</title>
 <style>
 body {
-  background: #111;
+  background: linear-gradient(135deg, #0f172a, #020617);
   color: white;
   text-align: center;
   font-family: Arial;
 }
-input {
-  width: 100px;
-  height: 50px;
-  border: none;
+
+h1 {
+  margin-top: 50px;
 }
+
+input {
+  width: 150px;
+  height: 60px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
 .box {
   margin-top: 20px;
-  font-size: 18px;
+  font-size: 20px;
+  background: #111;
+  padding: 20px;
+  border-radius: 10px;
+  display: inline-block;
 }
 </style>
-</head>
-
-<body>
-
-<h1>🎨 Color Converter</h1>
-
-<input type="color" id="colorPicker">
-
-<div class="box" id="result"></div>
-
-<script>
-const picker = document.getElementById("colorPicker");
-const result = document.getElementById("result");
-
-picker.addEventListener("input", () => {
-  const color = picker.value;
-
-  // تحويل HEX إلى RGB
-  const r = parseInt(color.substr(1,2), 16);
-  const g = parseInt(color.substr(3,2), 16);
-  const b = parseInt(color.substr(5,2), 16);
-
-  result.innerHTML = `
-    HEX: ${color} <br>
-    RGB: rgb(${r}, ${g}, ${b}) <br>
-    CSS: color: ${color};
-  `;
-});
-</script>
-
-</body>
-</html>
