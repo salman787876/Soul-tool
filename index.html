@@ -2,57 +2,114 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Color Converter</title>
+<title>Color Studio</title>
 
 <style>
 body {
-  background: linear-gradient(135deg, #0f172a, #020617);
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #1a0f05, #ff7a00);
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* الكرت الرئيسي */
+.container {
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
+  width: 350px;
   text-align: center;
-  font-family: Arial;
+  box-shadow: 0 0 40px rgba(255, 140, 0, 0.4);
 }
 
+/* العنوان */
 h1 {
-  margin-top: 50px;
+  margin-bottom: 20px;
+  font-size: 28px;
+  background: linear-gradient(90deg, #ff7a00, #ffb347);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+/* اختيار اللون */
 input {
-  width: 150px;
+  width: 120px;
   height: 60px;
-  border-radius: 10px;
   border: none;
+  border-radius: 15px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
-.box {
-  margin-top: 20px;
-  font-size: 20px;
+/* صندوق النتائج */
+.result {
   background: #111;
-  padding: 20px;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+/* زر النسخ */
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
   border-radius: 10px;
-  display: inline-block;
+  background: linear-gradient(90deg, #ff7a00, #ffb347);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px orange;
 }
 </style>
 
 </head>
 <body>
 
-<h1>🎨 Color to Code</h1>
+<div class="container">
+  <h1>🎨 Color Studio</h1>
 
-<input type="color" id="colorPicker">
+  <input type="color" id="picker">
 
-<div class="box" id="result">
-HEX: #ffffff
+  <div class="result" id="hex">HEX: #ffffff</div>
+  <div class="result" id="rgb">RGB: 255, 255, 255</div>
+
+  <button onclick="copyColor()">Copy HEX</button>
 </div>
 
 <script>
-const picker = document.getElementById("colorPicker");
-const result = document.getElementById("result");
+const picker = document.getElementById("picker");
 
 picker.addEventListener("input", () => {
   const color = picker.value;
-  result.innerHTML = "HEX: " + color;
+
+  document.getElementById("hex").innerText = "HEX: " + color;
+
+  // تحويل RGB
+  const r = parseInt(color.substr(1,2), 16);
+  const g = parseInt(color.substr(3,2), 16);
+  const b = parseInt(color.substr(5,2), 16);
+
+  document.getElementById("rgb").innerText = `RGB: ${r}, ${g}, ${b}`;
 });
+
+// نسخ
+function copyColor() {
+  const text = document.getElementById("hex").innerText.replace("HEX: ", "");
+  navigator.clipboard.writeText(text);
+  alert("Copied: " + text);
+}
 </script>
 
 </body>
