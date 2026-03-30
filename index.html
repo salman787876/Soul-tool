@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Color Converter</title>
+
 <style>
 body {
   background: linear-gradient(135deg, #0f172a, #020617);
@@ -27,3 +33,27 @@ input {
   display: inline-block;
 }
 </style>
+
+</head>
+<body>
+
+<h1>🎨 Color to Code</h1>
+
+<input type="color" id="colorPicker">
+
+<div class="box" id="result">
+HEX: #ffffff
+</div>
+
+<script>
+const picker = document.getElementById("colorPicker");
+const result = document.getElementById("result");
+
+picker.addEventListener("input", () => {
+  const color = picker.value;
+  result.innerHTML = "HEX: " + color;
+});
+</script>
+
+</body>
+</html>
